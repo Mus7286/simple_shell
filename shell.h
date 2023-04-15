@@ -104,12 +104,20 @@ typedef struct passinfo
  * @type: the builtin command flag
  * @func: the function
  */
+
 typedef struct builtin
 {
 	char *type;
 	int (*func)(info_t *);
 } builtin_table;
 
+
+/* toem_vars.c */
+int is_chain(info_t *, char *, size_t *);
+void check_chain(info_t *, char *, size_t *, size_t, size_t);
+int replace_alias(info_t *);
+int replace_vars(info_t *);
+int replace_string(char **, char *);
 
 /* toem_shloop.c */
 int hsh(info_t *, char **);
@@ -224,12 +232,5 @@ char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
-
-/* toem_vars.c */
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
 
 #endif
