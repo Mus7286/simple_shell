@@ -14,7 +14,7 @@ int _erratoi(char *s)
 
 	if (*s == '+')
 		s++;  /* TODO: why does this make main return 255? */
-	for (k = 0;  s[i] != '\0'; i++)
+	for (k = 0;  s[k] != '\0'; k++)
 	{
 		if (s[k] >= '0' && s[k] <= '9')
 		{
@@ -116,7 +116,7 @@ char *convert_number(long int num, int base, int flags)
 	*ptr = '\0';
 
 	do	{
-		*--ptr = array[n % base];
+		*--ptr = array[r % base];
 		r /= base;
 	} while (r != 0);
 

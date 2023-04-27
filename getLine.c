@@ -30,7 +30,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			if ((*buf)[g - 1] == '\n')
 			{
 				(*buf)[g - 1] = '\0'; /* remove trailing newline */
-				r--;
+				g--;
 			}
 			info->linecount_flag = 1;
 			remove_comments(*buf);
@@ -66,7 +66,7 @@ ssize_t get_input(info_t *info)
 	if (len) /* we have commands left in the chain buffer */
 	{
 		j = v; /* init new iterator to current buf position */
-		p = buf + i; /* get pointer for return */
+		p = buf + r; /* get pointer for return */
 
 		check_chain(info, buf, &j, v, len);
 		while (j < len) /* iterate to semicolon or end */
@@ -77,7 +77,7 @@ ssize_t get_input(info_t *info)
 		}
 
 		v = j + 1; /* increment past nulled ';'' */
-		if (i >= len) /* reached end of buffer? */
+		if (v >= len) /* reached end of buffer? */
 		{
 			v = len = 0; /* reset position and length */
 			info->cmd_buf_type = CMD_NORM;
